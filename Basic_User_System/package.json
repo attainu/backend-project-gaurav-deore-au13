@@ -1,0 +1,11 @@
+{
+  "name": "basic_user_system",
+  "version": "1.0.0",
+  "description": "In this project, we are going to create an application to manage all the registered user.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
