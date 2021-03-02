@@ -4,7 +4,10 @@
   "description": "In this project, we are going to create an application to manage all the registered user.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/index.js",
+    "dev": "nodemon ./server/index.js"
+
   },
   "author": "Gaurav Deore, Rohit Ku Bilung",
   "license": "ISC",
