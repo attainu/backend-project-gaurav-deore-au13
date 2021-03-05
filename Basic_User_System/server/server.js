@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5678;
+const cors = require('cors');
+const db = require('../config/db');
 
-app.get('/', (req,res)=>{
-    res.send("server is running fine");
-});
+app.use(cors());
+
+const authController = require('../routes/authController');
+app.use('/api', authController);
 
 app.get('/health', (req,res)=>{
     res.send("health is ok");
