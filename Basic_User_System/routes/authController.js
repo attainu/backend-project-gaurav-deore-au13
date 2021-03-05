@@ -11,6 +11,7 @@ router.use(bodyParser.json());
 
 router.post('/signup', (req, res) => {
     hashpass=bcrypt.hashSync(req.body.password,8);
+    
     Users.findOne({ email: req.body.email }, (err, email) => {
         if (email) return res.status(400).send("User Already Exists");
         else {
