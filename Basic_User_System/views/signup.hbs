@@ -6,13 +6,18 @@
 			<div class='content'>
 				<div class='welcome'>Hello There!</div>
 				<div class='subtitle'>You need to create an account to continue.</div>
+				<form action="/api/signup" method="POST">
 				<div class='input-fields'>
-					<input type='name' placeholder='Full Name' class='input-line full-width'></input>
-					<input type='email' placeholder='Email' class='input-line full-width'></input>
-					<input type='password' placeholder='Password' class='input-line full-width'></input>
-				</div>
-				<div class='spacing'>or continue with <span class='highlight'>Google</span></div>
-				<div><button class='ghost-round full-width'>Create Account</button></div>
+					<input type='text' placeholder='Full Name' class='input-line full-width' name="name"></input>
+					<input type='email' placeholder='Email' class='input-line full-width' name="email"></input>
+					<input type='password' placeholder='Password' class='input-line full-width' name="password"></input>
+					<input type='text' placeholder='Phone Number' class='input-line full-width' name="ph_number"></input>
+				</div><br><br>
+				<div><button type="submit" class='ghost-round full-width'>Create Account</button></div>
+				</form>
+				<div class='spacing'>or continue with <a href="#" class='highlight'>Google</a></div>
+				<div class='spacing'>Already a Member?? <a href="/login" class='highlight'>signIn</a></div>
+				
 			</div>
 		</div>
 	</div>

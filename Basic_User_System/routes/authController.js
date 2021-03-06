@@ -21,6 +21,7 @@ router.post('/signup', (req, res) => {
                 password: hashpass,
                 ph_number: req.body.ph_number || null,
                 address: req.body.address || null,
+                role: req.body.role || 'user',
                 isActive: true
             }, (err, user) => {
                 if (err) throw err;
@@ -31,7 +32,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login',(req,res)=>{
-    User.findOne({email:req.body.email},(err,data)=>{
+    Users.findOne({email:req.body.email},(err,data)=>{
         if(err) return res.status(500).send('error while login');
 
         if(!data) return res.send({auth:false,token:"no user found"});

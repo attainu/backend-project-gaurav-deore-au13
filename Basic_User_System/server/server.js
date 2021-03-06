@@ -9,7 +9,7 @@ const exphbs = require('express-handlebars');
 
 app.use(cors());
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, '../views'));
 app.use(express.static(path.join(__dirname,'../public')));
 
@@ -20,6 +20,10 @@ app.set("view engine", "hbs");
 
 app.get('/', (req,res)=>{
     res.render('signup');
+});
+
+app.get('/login', (req, res) => {
+    res.render('login');
 });
 
 const authController = require('../routes/authController');

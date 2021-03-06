@@ -6,8 +6,7 @@ var UserSchema = new mongoose.Schema({
     password:String,
     ph_number:Number,
     address:String,
-    pro_image:String,
-    co_image:String,
+    role:String,
     isActive:Boolean
 });
 
