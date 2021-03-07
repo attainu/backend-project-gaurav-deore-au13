@@ -7,7 +7,13 @@ var UserSchema = new mongoose.Schema({
     ph_number:Number,
     address:String,
     role:String,
-    isActive:Boolean
+    isActive:Boolean,
+    status: {
+        type: String, 
+        enum: ['Pending', 'Active'],
+        default: 'Pending'
+      },
+      confirmationCode: { type: String, unique: true }
 });
 
 mongoose.model('Users', UserSchema);
