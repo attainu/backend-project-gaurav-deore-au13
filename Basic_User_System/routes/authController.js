@@ -11,11 +11,11 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.post('/signup', (req, res) => {
-    hashpass=bcrypt.hashSync(req.body.password,8);   
+    hashpass = bcrypt.hashSync(req.body.password, 8);
     Users.findOne({ email: req.body.email }, (err, email) => {
         if (email) return res.status(400).send("User Already Exists");
         else {
-            const token = jwt.sign({email: req.body.email}, config.secret);
+            const token = jwt.sign({email}, config.secret);
             Users.create({
                 name: req.body.name,
                 email: req.body.email,
@@ -27,7 +27,7 @@ router.post('/signup', (req, res) => {
                 isActive: true
             }, (err, user) => {
                 if (err) throw err;
-                res.status(200).send('Successfully Registered');
+                res.status(200).send('Successfully Registered and check your email to confirm');
             });
             nodemailer.sendConfirmationEmail(
                 req.body.name,
@@ -38,41 +38,41 @@ router.post('/signup', (req, res) => {
     });
 });
 
-router.get('/confirm/:confirmationCode',(req,res)=>{
-    Users.findOne({confirmationCode: req.params.confirmationCode},(err,data)=>{
-        if(err) return res.status(500).send('error while confirming');
+router.get('/confirm/:confirmationCode', (req, res) => {
+    Users.findOne({ confirmationCode: req.params.confirmationCode }, (err, data) => {
+        if (err) return res.status(500).send('error while confirming');
 
-        if(!data) return res.send({auth:false,code:"error in verifying"});
+        if (!data) return res.send({ auth: false, code: "error in verifying" });
         data.status = "Active";
         data.save((err) => {
             if (err) {
-              res.status(500).send({ message: err });
-              return;
+                res.status(500).send({ message: err });
+                return;
             }
-            else {return res.send({msg:'your email is confirmed'});}
-          });
+            else { return res.send({ msg: 'your email is confirmed' }); }
+        });
     });
 });
 
-router.post('/login',(req,res)=>{
-    Users.findOne({email:req.body.email},(err,data)=>{
-        if(err) return res.status(500).send('error while login');
+router.post('/login', (req, res) => {
+    Users.findOne({ email: req.body.email }, (err, data) => {
+        if (err) return res.status(500).send('error while login');
 
-        if(!data) return res.send({auth:false,token:"no user found"});
-        
-        else{
+        if (!data) return res.send({ auth: false, token: "no user found" });
+
+        else {
             const validPass = bcrypt.compareSync(req.body.password, data.password);
-            
-            if(!validPass){
-                return res.send({auth:false,token:'invalid password'});
-            } 
+
+            if (!validPass) {
+                return res.send({ auth: false, token: 'invalid password' });
+            }
             else if (data.status != "Active") {
                 return res.status(401).send({
-                  message: "Pending Account. Please Verify Your Email!",
+                    message: "Pending Account. Please Verify Your Email!",
                 });
             }
-            else{
-                res.render('home')
+            else {
+                res.redirect('home')
             }
 
             // var token = jwt.sign({id:data._id},config.secret,{expiresIn:3600});

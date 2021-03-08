@@ -26,6 +26,10 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
+app.get('/home', (req,res)=>{
+    res.render('home');
+});
+
 const authController = require('../routes/authController');
 app.use('/api', authController);
 
