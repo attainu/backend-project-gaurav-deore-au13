@@ -1,5 +1,4 @@
 
-	<div class='bold-line'></div>
 	<div class='container'>
 		<div class='window'>
 			<div class='overlay'></div>
@@ -10,14 +9,18 @@
 				<div class='input-fields'>
 					<input type='text' placeholder='Full Name' class='input-line full-width' name="name"></input>
 					<input type='email' placeholder='Email' class='input-line full-width' name="email"></input>
+					<i class="redColor">{{error.exist}}</i>
 					<input type='password' placeholder='Password' class='input-line full-width' name="password"></input>
 					<input type='text' placeholder='Phone Number' class='input-line full-width' name="ph_number"></input>
-				</div><br><br>
+				</div>
+				<i class="greenColor">{{success}}</i>
+				<br>
+				<br>
 				<div><button type="submit" class='ghost-round full-width'>Create Account</button></div>
 				</form>
-				<div class='spacing'>or continue with <a href="#" class='highlight'>Google</a></div>
+				<div class='spacing'>or continue with <a href="/api/google" class='highlight'>Google</a></div>
 				<div class='spacing'>Already a Member?? <a href="/login" class='highlight'>signIn</a></div>
-				
+			    
 			</div>
 		</div>
 	</div>

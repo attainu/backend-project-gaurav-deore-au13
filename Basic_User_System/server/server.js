@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('../config/db');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 
 app.use(cors());
 
@@ -26,8 +27,8 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-app.get('/home', (req,res)=>{
-    res.render('home');
+app.get('/forgot', (req,res)=>{
+    res.render('forgot');
 });
 
 const authController = require('../routes/authController');

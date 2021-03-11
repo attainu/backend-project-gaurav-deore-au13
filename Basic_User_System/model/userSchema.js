@@ -6,7 +6,12 @@ var UserSchema = new mongoose.Schema({
     password:String,
     ph_number:Number,
     address:String,
-    role:String,
+    resetCode:String,
+    role:{
+      type: String, 
+      enum: ['user', 'admin'],
+      default: 'user'
+    },
     isActive:Boolean,
     status: {
         type: String, 

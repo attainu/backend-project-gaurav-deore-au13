@@ -27,3 +27,16 @@ let transport = nodemailer.createTransport({
           `
       }).catch(err => console.log(err));
   };
+
+  module.exports.sendResetEmail=(name, email, ResetCode)=>{
+    transport.sendMail({
+        from:user,
+        to:email,
+        subject:"reset your account",
+        html:`<h1>Account reset</h1>
+        <h2>hello ${name}</h2>
+        <p>Please update your password by clicking on the following link</p>
+        <a href=http://localhost:5678/api/reset/${ResetCode}> Click here</a>
+        `
+    }).catch(err => console.log(err));
+};

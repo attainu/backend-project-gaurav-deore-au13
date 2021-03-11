@@ -1,0 +1,47 @@
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+	<div class='container1'>
+		<div class='content'>
+	    <div class='welcome'>Welcome Admin</div>
+        
+	
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Ph Number</th>
+            <th>Address</th>
+			<th>Role</th>
+			<th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.ph_number}}</td>
+                <td>{{this.address}}</td>
+				<td>{{this.role}}</td>
+                <td>{{this.status}}</td>
+                <td>
+                    <a href="/api/update/{{this._id}}">
+                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    </a>
+                    <a href="/api/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true">
+                         
+                        </i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+	</div>
+    </div>

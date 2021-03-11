@@ -1,0 +1,22 @@
+
+	<div class='bold-line'></div>
+	<div class='container'>
+		<div class='window'>
+			<div class='overlay'></div>
+			<div class='content'>
+				<div class='welcome'>Hello There!</div>
+				<div class='subtitle'>Update Your password</div>
+				<form action="/api/reset" method="POST">
+				<div class='input-fields'>
+					{{list._id}}
+					<input type="hidden" name="_id" value="{{list._id}}">
+					<input type='password' placeholder='New Password' class='input-line full-width' name="npass"></input>
+					<input type='text' placeholder='Confirm Password' class='input-line full-width' name="cpass"></input>
+					</div>
+                    <br>
+                <div><button type="submit" class='ghost-round full-width'>Reset</button></div>
+				</form>
+				
+			</div>
+		</div>
+	</div>

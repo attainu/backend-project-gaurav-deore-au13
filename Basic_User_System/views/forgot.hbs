@@ -1,0 +1,23 @@
+
+	<div class='bold-line'></div>
+	<div class='container'>
+		<div class='window'>
+			<div class='overlay'></div>
+			<div class='content'>
+				<div class='welcome'>Recover your password</div>
+				<div class='subtitle'>Enter your registered email below</div>	
+                <br><br>
+                <form action="/api/forgot" method="POST">
+				<div class='input-fields'>
+					<input type='email' placeholder='Email' class='input-line full-width' name="email"></input>
+					</div>
+				<i class="greenColor">{{sent}}</i>
+					<i class="redColor">{{exist}}</i>
+					<br><br>
+                <div><button type="submit" class='ghost-round full-width'>Submit</button></div>
+				</form>
+
+				<div class='spacing'><a href="/login" class='highlight'>signIn</a> Here to Continue</div>
+			</div>
+		</div>
+	</div>

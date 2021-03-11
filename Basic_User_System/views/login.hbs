@@ -5,13 +5,16 @@
 			<div class='overlay'></div>
 			<div class='content'>
 				<div class='welcome'>Hello There!</div>
+				<div class="greenColor">{{msg}}</div>
 				<div class='subtitle'>Please SignIn to continue.</div>
 				<form action="/api/login" method="POST">
 				<div class='input-fields'>
 					<input type='email' placeholder='Email' class='input-line full-width' name="email"></input>
+					<i class="redColor">{{error.token}} {{message}}</i>
 					<input type='password' placeholder='Password' class='input-line full-width' name="password"></input>
+					<i class="redColor">{{error.ptoken}}</i>
 					</div>
-                    <div class='spacing'>Need help with passsword <a href="#" class='highlight'>Click Me</a></div>
+                    <div class='spacing'>Need help with passsword <a href="/forgot" class='highlight'>Click Me</a></div>
 				<br><br>
                 <div><button type="submit" class='ghost-round full-width'>Sign In</button></div>
 				</form>
