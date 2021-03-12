@@ -1,0 +1,25 @@
+
+	<div class='container'>
+		<div class='window'>
+			<div class='overlay'></div>
+			<div class='content'>
+				<div class='welcome'>Hello Admin</div>
+				<div class='subtitle'>fill the form to add a new user</div>
+				<form action="/api/add" method="POST">
+				<div class='input-fields'>
+					<input type='text' placeholder='Full Name' class='input-line full-width' name="name"></input>
+					<input type='email' placeholder='Email' class='input-line full-width' name="email"></input>
+					<i class="redColor">{{error.exist}}</i>
+					<input type='password' placeholder='Password' class='input-line full-width' name="password"></input>
+					<input type='text' placeholder='Phone Number' class='input-line full-width' name="ph_number"></input>
+                    <input type="text" placeholder='Address' class='input-line full-width' name="address"></input>
+				</div>
+				<i class="greenColor">{{success}}</i>
+				<br>
+				<br>
+				<div><button type="submit" class='ghost-round full-width'>Create Account</button></div>
+				</form>
+			    
+			</div>
+		</div>
+	</div>

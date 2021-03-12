@@ -31,6 +31,15 @@ app.get('/forgot', (req,res)=>{
     res.render('forgot');
 });
 
+app.get('/logout',function(req,res){    
+    res.redirect('/login');
+});
+
+app.get('/add',function(req,res){    
+    res.render('add');
+});
+
+
 const authController = require('../routes/authController');
 app.use('/api', authController);
 

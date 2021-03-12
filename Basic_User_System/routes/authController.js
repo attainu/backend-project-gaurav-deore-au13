@@ -34,6 +34,7 @@ router.get('/google/success', (req, res) => {
             email: req.user.emails[0].value,
             ph_number: req.body.ph_number || null,
             address: req.body.address || null,
+            status: "Active",
             isActive: true
             }, (err, user) => {
                 if (err) throw err;
@@ -77,6 +78,7 @@ router.get('/google/callback',
     // Successful authentication, redirect success.
     res.redirect('success');
   });
+
 
 router.post('/signup', (req, res) => {
     hashpass = bcrypt.hashSync(req.body.password, 8);
@@ -143,12 +145,9 @@ router.post('/login', (req, res) => {
                 if (data.role != "admin"){
                     return res.render('userdash');
                 }else{
-                    return res.redirect('adminpage');
+                    return res.redirect('./adminpage');
                 }
             }
-
-            // var token = jwt.sign({id:data._id},config.secret,{expiresIn:3600});
-            // res.send({auth:true,token:token});
         }
     });
 });
@@ -220,29 +219,43 @@ router.get('/adminpage', (req, res) => {
     }).lean();
 });
 
-router.get('/update/:id',(req,res) => {
-    Users.findById(req.params.id,(err,user) => {
+router.get('/update/:_id',(req,res) => {
+    Users.findOne({_id:req.params._id},(err,user) => {
         if(!err){
-            res.render("addOrEdit",{
+            res.render('edit',{
                 list: user
             });
         }
-    });
+    }).lean();
 });
 
 router.post('/update',(req,res)=>{
-    Users.findOneAndUpdate({_id:req.body._id},(err,data)=>{
-        if(!data)return res.send("error in updating");
-        data.name = req.body.name;
-        data.ph_number = req.body.ph_number;
-        data.address = req.body.address;
-        data.save((err) => {
-            if (err) {
-                res.status(500).send({ message: err });
-                return;
-            }
-            else { return res.send({ msg: 'your password updated' }); }
-        });
+    Users.findOneAndUpdate({_id:req.body._id,},req.body,{new:true},(err,data)=>{
+        if(!err) return res.redirect('./adminpage');
+
+    });
+});
+
+router.post('/add', (req, res) => {
+    hashpass = bcrypt.hashSync(req.body.password, 8);
+    Users.findOne({ email: req.body.email }, (err, email) => {
+        if (email) return res.status(400).render('add',{error:{exist: "User Already Exist"} });
+        else {
+            const token = jwt.sign({email}, config.secret);
+            Users.create({
+                name: req.body.name,
+                email: req.body.email,
+                password: hashpass,
+                confirmationCode: token,
+                ph_number: req.body.ph_number || null,
+                address: req.body.address || null,
+                status : "Active",
+                isActive: true
+            }, (err, user) => {
+                if (err) throw err;
+                res.status(200).redirect('./adminpage');
+            });
+        }
     });
 });
 

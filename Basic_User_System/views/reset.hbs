@@ -8,7 +8,6 @@
 				<div class='subtitle'>Update Your password</div>
 				<form action="/api/reset" method="POST">
 				<div class='input-fields'>
-					{{list._id}}
 					<input type="hidden" name="_id" value="{{list._id}}">
 					<input type='password' placeholder='New Password' class='input-line full-width' name="npass"></input>
 					<input type='text' placeholder='Confirm Password' class='input-line full-width' name="cpass"></input>
